@@ -12,6 +12,10 @@
                   color="var(--primary)"
                 />
                 <div class="row">
+                  <div class="img-fluid col-md-12 mb-2">
+                    <img :src="form.avatar" class="uploading-image img-fluid mb-3" style ="width:200px;" />
+                    <input type="file" accept="image/jpeg" @change=uploadImage>
+                 </div>
                   <div class="col-md-12 mb-3">
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -56,13 +60,10 @@ export default {
   },
   data: () => ({
     form: {
+      avatar:""
     },
     errors: null,
     loading: false,
-    lgas: {},
-    states: {},
-    lgaloading: false,
-    parties: {},
   }),
 
   methods: {
@@ -74,11 +75,20 @@ export default {
           this.loading = false;
           toastr.success("Blog Created Successfully");
           this.form = ""
+          this.avatar= ""
         })
         .catch((err) => {
           this.loading = false;
         });
     },
+    uploadImage(e){
+                const image = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e =>{
+                  this.form.avatar = e.target.result;
+                };
+            },
   },
 
   mounted() {

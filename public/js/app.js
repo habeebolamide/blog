@@ -2195,13 +2195,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: {},
+      form: {
+        avatar: ""
+      },
       errors: null,
-      loading: false,
-      lgas: {},
-      states: {},
-      lgaloading: false,
-      parties: {}
+      loading: false
     };
   },
   methods: {
@@ -2212,9 +2210,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.loading = false;
         toastr__WEBPACK_IMPORTED_MODULE_0___default().success("Blog Created Successfully");
         _this.form = "";
+        _this.avatar = "";
       })["catch"](function (err) {
         _this.loading = false;
       });
+    },
+    uploadImage: function uploadImage(e) {
+      var _this2 = this;
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = function (e) {
+        _this2.form.avatar = e.target.result;
+      };
     }
   },
   mounted: function mounted() {}
@@ -2403,7 +2411,7 @@ var render = function render() {
   }, [_c("a", {
     staticClass: "navbar-brand",
     attrs: {
-      href: "#"
+      href: "/"
     }
   }, [_vm._v("Navbar")]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "collapse navbar-collapse",
@@ -2562,6 +2570,24 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
+    staticClass: "img-fluid col-md-12 mb-2"
+  }, [_c("img", {
+    staticClass: "uploading-image img-fluid mb-3",
+    staticStyle: {
+      width: "200px"
+    },
+    attrs: {
+      src: _vm.form.avatar
+    }
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      type: "file",
+      accept: "image/jpeg"
+    },
+    on: {
+      change: _vm.uploadImage
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12 mb-3"
   }, [_c("div", {
     staticClass: "input-group"
@@ -2679,7 +2705,13 @@ var render = function render() {
       staticClass: "col-md-4"
     }, [_c("div", {
       staticClass: "card mb-4 mt-3"
-    }, [_c("div", {
+    }, [_c("img", {
+      staticClass: "card-img-top",
+      attrs: {
+        src: blog.avatar,
+        alt: "Card image cap"
+      }
+    }), _vm._v(" "), _c("div", {
       staticClass: "card-body"
     }, [_c("h1", {
       staticClass: "text-center"
