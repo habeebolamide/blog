@@ -60,7 +60,6 @@ export default {
   },
   data: () => ({
     form: {
-      avatar:""
     },
     errors: null,
     loading: false,

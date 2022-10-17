@@ -25,6 +25,8 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::post('/create', [BlogController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/getblogs', [BlogController::class, 'getblogs'])->middleware(['auth'])->name('getblogs');
     Route::get('/details/{blog_id}', [BlogController::class, 'details'])->middleware(['auth'])->name('details');
+    Route::get('/edit/{blog_id}', [BlogController::class, 'edit'])->middleware(['auth'])->name('details');
+    Route::put('/edit/update_blog/{blog_id}', [BlogController::class, 'update_blog'])->middleware(['auth'])->name('update_blog');
 });
 
 require __DIR__.'/auth.php';

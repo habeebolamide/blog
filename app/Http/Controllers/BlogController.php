@@ -43,4 +43,19 @@ class BlogController extends Controller
         // dd($blog);
         return Inertia::render('Blog/Partials/Details', ['blog' => $blog]);
     }
+    public function edit(Request $request, $id)
+    {
+        $blog = Blog::where('id', $id)->first();
+        return Inertia::render('Blog/Partials/Edit', ['blog' => $blog]);
+    }
+    public function update_blog(Request $request, $blog_id)
+    {
+        $update_blog = Blog::where('id', $blog_id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        if ($update_blog) 
+        return true;
+    }
 }
