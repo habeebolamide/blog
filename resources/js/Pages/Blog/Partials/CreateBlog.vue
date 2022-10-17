@@ -4,7 +4,7 @@
       <div class="row m-4">
         <div class="col-md-4 m-auto">
           <div class="main-card card">
-            <form @submit.prevent="createBlog" id="form">
+            <form @submit.prevent="createBlog" ref="form">
               <div class="card-body">
                 <VueElementLoading
                   :active="loading"
@@ -47,7 +47,7 @@
   
       <script>
 import toastr from "toastr";
-import Layout from "../../Layout/Layout.vue";
+import Layout from "../../../Layout/Layout.vue";
 import VueElementLoading from "vue-element-loading";
 export default {
   components: {
@@ -56,7 +56,6 @@ export default {
   },
   data: () => ({
     form: {
-      parties: [],
     },
     errors: null,
     loading: false,
@@ -69,13 +68,12 @@ export default {
   methods: {
     createBlog() {
       this.loading = true;
-      let form =  document.getElementById('form')
       axios
         .post("/blog/create", this.form)
         .then((res) => {
           this.loading = false;
           toastr.success("Blog Created Successfully");
-          form.reset()
+          this.form = ""
         })
         .catch((err) => {
           this.loading = false;

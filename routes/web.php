@@ -23,6 +23,8 @@ Route::get('/', [UserController::class, 'index'])->middleware(['auth'])->name('i
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::post('/create', [BlogController::class, 'create'])->name('create');
+    Route::get('/getblogs', [BlogController::class, 'getblogs'])->name('getblogs');
+    Route::get('/details/{blog_id}', [BlogController::class, 'details'])->name('details');
 });
 
 require __DIR__.'/auth.php';
