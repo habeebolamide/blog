@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'index'])->middleware(['auth'])->name('index');
 
 Route::prefix('blog')->name('blog.')->group(function () {
-    Route::get('/', [BlogController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::get('/', [BlogController::class, 'index'])->middleware(['auth','check'])->name('index');
     Route::post('/create', [BlogController::class, 'create'])->middleware(['auth'])->name('create');
     Route::get('/getblogs', [BlogController::class, 'getblogs'])->middleware(['auth'])->name('getblogs');
     Route::get('/details/{blog_id}', [BlogController::class, 'details'])->middleware(['auth'])->name('details');

@@ -1,5 +1,7 @@
 <template>
-    
+    <div>
+        <h1>{{blog}}</h1>
+    </div>
 </template>
 
 <script>
@@ -8,7 +10,7 @@ export default {
         blog:Object
     },
     mounted(){
-        console.log( this.blog);
+        console.log(this.blog);
        
     }
 }
