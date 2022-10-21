@@ -40,7 +40,7 @@ export default {
       axios
         .post("/logout")
         .then((res) => {
-          window.location.href = "/";
+          window.location.href = "/login";
         })
         .catch((error) => {
           window.location.href = "/login";

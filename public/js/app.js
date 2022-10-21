@@ -2117,7 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       axios.post("/logout").then(function (res) {
-        window.location.href = "/";
+        window.location.href = "/login";
       })["catch"](function (error) {
         window.location.href = "/login";
       });

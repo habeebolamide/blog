@@ -17,7 +17,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next)
     {
        $type =  $request->user()->user_type;
-        if ($type == 2) {
+        if ($type == "user") {
             return redirect('/');
         }
         return $next($request);
